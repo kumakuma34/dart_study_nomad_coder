@@ -1,59 +1,50 @@
 // main함수가 dart의 entry point
+
+import 'dart:async';
+
+String sayHello(
+    {required String name, required int age, String country = 'wakanda'}) {
+  return "Hello $name, you are $age, and you come from $country";
+}
+
+String sayHelloTest(String name) => "Hello $name nice to meet you!";
+
+num plus(num a, num b) => a + b;
+
+// {} 치는 부분만 optional로 바뀜
+String sayHelloOptional(String name, int age, {String country = 'cuba'}) =>
+    "Hello $name, you are $age years old, you are from $country";
+
+// ?를 넣으면 null일 수도 있다고 말해주는 것
+// left ?? right , null이면 오른쪽, 아니면 왼쪽 호출
+String capitalizeName(String? name) => name?.toUpperCase() ?? "ANNON";
+
+typedef ListOfInts = List<int>;
+
+ListOfInts reverseListOfNumbers(ListOfInts list) {
+  var reversed = list.reversed;
+  return reversed.toList();
+}
+
+typedef UserInfo = Map<String, String>;
+
+String sayHi(UserInfo userInfo) {
+  return "Hi ${userInfo['name']}";
+}
+
 void main() {
-  String name1 = "nico";
-  bool alive = true;
-  int age = 12;
-  double money = 69.99;
+  print(sayHello(age: 12, country: 'korea', name: 'nico'));
+  print(sayHello(age: 12, name: 'hyunsoo'));
+  print(sayHelloOptional('nico', 12));
 
-  //int, float 모두 사용 가능
-  num x = 12;
-  x = 1.1;
+  capitalizeName('nico');
+  capitalizeName(null);
 
-  //list
-  var giveMeFive = true;
-  var numbers = [
-    1,
-    2,
-    3,
-    4,
-    if (giveMeFive) 5,
-  ];
-  print(numbers);
+  String? name;
+  // name이 null이면 값 할당
+  name ??= 'nico';
+  print(name);
 
-  var name = 'nico';
-  var age1 = 10;
-  var greeting = "hello everyone, my name is $name and I'm ${age1 + 2}";
-  print(greeting);
-
-  var oldFriends = ['nico', 'lynn'];
-  var newFriends = [
-    'lewis',
-    'ralph',
-    'darren',
-    for (var friend in oldFriends) "heart $friend",
-  ];
-  print(newFriends);
-
-  //Map
-  var player = {
-    'name': 'nico',
-    'xp': 19.99,
-    'superpower': false,
-  };
-
-  Map<List<int>, bool> player1 = {
-    [1, 2, 3, 4, 5]: true,
-  };
-
-  List<Map<String, Object>> players = [
-    {'name': 'nico', 'xp': 123.231},
-    {'name': 'nico', 'xp': 123.231},
-  ];
-
-  //Set, 값들은 unique하다.
-  var number_set = {1, 2, 3, 4};
-  numbers.add(1);
-  numbers.add(1);
-  numbers.add(1);
-  print(number_set);
+  print(reverseListOfNumbers([1, 2, 3]));
+  print(sayHi({"name": 'nico'}));
 }
