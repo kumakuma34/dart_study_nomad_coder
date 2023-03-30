@@ -1,50 +1,37 @@
-// main함수가 dart의 entry point
+class Human {
+  final String name;
+  Human({required this.name});
 
-import 'dart:async';
-
-String sayHello(
-    {required String name, required int age, String country = 'wakanda'}) {
-  return "Hello $name, you are $age, and you come from $country";
+  void sayHello() {
+    print("Hi my name is $name");
+  }
 }
 
-String sayHelloTest(String name) => "Hello $name nice to meet you!";
-
-num plus(num a, num b) => a + b;
-
-// {} 치는 부분만 optional로 바뀜
-String sayHelloOptional(String name, int age, {String country = 'cuba'}) =>
-    "Hello $name, you are $age years old, you are from $country";
-
-// ?를 넣으면 null일 수도 있다고 말해주는 것
-// left ?? right , null이면 오른쪽, 아니면 왼쪽 호출
-String capitalizeName(String? name) => name?.toUpperCase() ?? "ANNON";
-
-typedef ListOfInts = List<int>;
-
-ListOfInts reverseListOfNumbers(ListOfInts list) {
-  var reversed = list.reversed;
-  return reversed.toList();
+class QuickRunner {
+  void runQuick() {
+    print("Ruuuuun!");
+  }
 }
 
-typedef UserInfo = Map<String, String>;
-
-String sayHi(UserInfo userInfo) {
-  return "Hi ${userInfo['name']}";
+class Strong {
+  final double strengthLevel = 1500.99;
 }
 
-void main() {
-  print(sayHello(age: 12, country: 'korea', name: 'nico'));
-  print(sayHello(age: 12, name: 'hyunsoo'));
-  print(sayHelloOptional('nico', 12));
+class Tall {
+  final double height = 1.99;
+}
 
-  capitalizeName('nico');
-  capitalizeName(null);
+enum Team { blue, red }
 
-  String? name;
-  // name이 null이면 값 할당
-  name ??= 'nico';
-  print(name);
+class Horse with Strong, QuickRunner {}
 
-  print(reverseListOfNumbers([1, 2, 3]));
-  print(sayHi({"name": 'nico'}));
+class Kid with QuickRunner {}
+
+class Player with Strong, QuickRunner, Tall {
+  final Team team;
+
+  Player({required this.team});
+}
+
+void main() 
 }
